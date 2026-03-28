@@ -1,0 +1,16 @@
+# Embed etcd configuration
+embed:
+  # 数据目录
+  data-dir: /var/lib/milvus/etcd
+  # 客户端监听地址
+  listen-client-urls: http://0.0.0.0:2379
+  # 对等节点监听地址
+  listen-peer-urls: http://0.0.0.0:2380
+  # 初始集群令牌
+  initial-cluster-token: etcd-cluster-1
+  # 初始集群状态
+  initial-cluster-state: new
+  # 初始集群配置
+  initial-cluster: default=http://0.0.0.0:2380
+  # 节点名称
+  name: default

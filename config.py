@@ -1,0 +1,88 @@
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent
+# ORIGINAL_PROJECT_ROOT = Path(r"D:\KG_Scene_Retrieval")
+ORIGINAL_PROJECT_ROOT = Path(
+    r"D:\BaiduSyncdisk\Code\KgClip")
+
+
+def resolve_resource_dir(local_dir: Path, fallback_dir: Path) -> Path:
+    return local_dir if local_dir.exists() else fallback_dir
+
+
+MODELS_DIR = resolve_resource_dir(PROJECT_ROOT / "models", ORIGINAL_PROJECT_ROOT / "models")
+ENGCLIP_MODEL_DIR = MODELS_DIR / "engclip"
+CHNCLIP_MODEL_DIR = MODELS_DIR / "chnclip"
+CHNCLIP_REPO_ID = "OFA-Sys/chinese-clip-vit-base-patch16"
+
+CSV_DIR = PROJECT_ROOT / "csvdata"
+TRAINVAL_SUBSET_NAME = "trainval_camera_part06_part10"
+TRAINVAL_ASSET_DIR = PROJECT_ROOT / "derived_data" / TRAINVAL_SUBSET_NAME
+IMAGE_CSV_PATH = CSV_DIR / "nuScenes_v1.0_trainval_camera_part06_part10.csv"
+TEXT_CSV_PATH = CSV_DIR / "driving_scene_text.csv"
+
+TRAINVAL_ROOT = Path(r"D:\BaiduSyncdisk\Code\KgClip\nuScenes\Trainval")
+NUSCENES_VERSION = "v1.0-trainval"
+NUSCENES_META_ROOT = TRAINVAL_ROOT / "metadata"
+NUSCENES_META_SOURCE_DIR = NUSCENES_META_ROOT / NUSCENES_VERSION
+NUSCENES_META_DIR = TRAINVAL_ASSET_DIR / NUSCENES_VERSION
+NUSCENES_SCENE_TOKEN_PATH = TRAINVAL_ASSET_DIR / "scene_tokens.json"
+NUSCENES_SUBSET_REPORT_PATH = TRAINVAL_ASSET_DIR / "subset_report.json"
+NUSCENES_BLOB_ROOTS = [
+    TRAINVAL_ROOT / "nuScenes_Trainval06_blobs_camera",
+    TRAINVAL_ROOT / "nuScenes_Trainval10_blobs_camera",
+]
+NUSCENES_PRIMARY_BLOB_ROOT = NUSCENES_BLOB_ROOTS[0]
+NUSCENES_ROOT = NUSCENES_PRIMARY_BLOB_ROOT
+NUSCENES_SAMPLES_DIR = NUSCENES_PRIMARY_BLOB_ROOT / "samples"
+NUSCENES_SWEEPS_DIR = NUSCENES_PRIMARY_BLOB_ROOT / "sweeps"
+NUSCENES_MAPS_DIR = NUSCENES_META_ROOT / "maps"
+PRIMARY_CAMERA = "CAM_FRONT"
+
+APP_PORT = 7860
+ATTU_PORT = 8000
+MILVUS_HOST = "127.0.0.1"
+MILVUS_PORT = 19530
+MILVUS_COLLECTION_NAME = "multimodal_search_trainval_camera_part06_part10"
+MILVUS_VECTOR_DIM = 512
+MILVUS_INDEX_TYPE = "IVF_FLAT"
+MILVUS_METRIC_TYPE = "IP"
+MILVUS_NLIST = 512
+MILVUS_NPROBE = 16
+DEFAULT_TOP_K = 5
+IMAGE_ID_MIN = 2000
+
+NEO4J_URI = "bolt://localhost:7687"
+NEO4J_USER = "neo4j"
+NEO4J_PASSWORD = ""
+NEO4J_HTTP_PORT = 7474
+
+DOCKER_COMPOSE_FILE = PROJECT_ROOT / "docker-compose.services.yml"
+DOCKER_ENV_FILE = PROJECT_ROOT / ".docker-services.env"
+DOCKER_PROJECT_NAME = "kg_scene_retrieval"
+DOCKER_ETCD_IMAGE = "quay.io/coreos/etcd:v3.5.18"
+DOCKER_MINIO_IMAGE = "minio/minio:RELEASE.2024-12-18T13-15-44Z"
+DOCKER_MILVUS_IMAGE = "milvusdb/milvus:v2.6.11"
+DOCKER_NEO4J_IMAGE = "neo4j:5.15"
+DOCKER_ATTU_IMAGE = "zilliz/attu:v2.6.3"
+ATTU_CONTAINER_NAME = "attu"
+ATTU_MILVUS_URL = "host.docker.internal:19530"
+DOCKER_MINIO_PORT = 9000
+DOCKER_MINIO_CONSOLE_PORT = 9001
+DOCKER_MILVUS_HEALTH_PORT = 9091
+
+GENERATED_VIDEO_DIR = PROJECT_ROOT / "generated_videos" / TRAINVAL_SUBSET_NAME
+VIDEO_FPS = 6
+VIDEO_MAX_FRAMES = 16
+VIDEO_FRAME_STRIDE = 1
+VIDEO_RESULT_COUNT = 3
+VIDEO_SEARCH_LIMIT = 24
+VIDEO_TRANSITION_FRAMES = 1
+VIDEO_OUTPUT_MAX_WIDTH = 960
+HIT_METADATA_CACHE_SIZE = 4096
+VIDEO_CLIP_CACHE_SIZE = 64
+ENABLE_RETRIEVAL_TIMINGS = True
+
+# Backward-compatible aliases for modules that have not been migrated yet.
+TRAINVAL06_SUBSET_NAME = TRAINVAL_SUBSET_NAME
+TRAINVAL06_ASSET_DIR = TRAINVAL_ASSET_DIR

@@ -1,0 +1,44 @@
+# Python cache / build
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# IDE / editor
+.idea/
+.vscode/
+
+# Runtime / temp files
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+.gradio/
+.accelerate/
+.gradio_launch_info.cmd
+tools/_cf_stdout.txt
+tools/_cf_stderr.txt
+
+# Local databases / generated outputs
+milvus_db/
+generated_videos/
+
+# Large local assets (do not push to GitHub)
+nuScenes/
+models/
+derived_data/
+csvdata/
+
+# Local binaries
+tools/cloudflared.exe

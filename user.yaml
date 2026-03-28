@@ -1,0 +1,41 @@
+# User configuration for Milvus
+service:
+  # 服务端口
+  port: 19530
+  # 健康检查端口
+  health_port: 9091
+  # 服务地址
+  address: 0.0.0.0
+
+cluster:
+  # 部署模式
+  deploy_mode: standalone
+
+storage:
+  # 存储类型
+  storage_type: local
+  # 本地存储路径
+  local:
+    path: /var/lib/milvus
+
+metastore:
+  # 元数据存储类型
+  type: etcd
+  # etcd 配置
+  etcd:
+    # etcd 地址
+    endpoints: ["127.0.0.1:2379"]
+    # etcd 用户名（如果有）
+    username: ""
+    # etcd 密码（如果有）
+    password: ""
+
+cache:
+  # 插入缓存大小
+  insert_cache_size: 1GB
+
+querynode:
+  # 查询节点配置
+  cache:
+    # 查询缓存大小
+    size: 4GB
